@@ -1,0 +1,12 @@
+[Unit]
+Description=Locker locking daemon
+After=network.target
+
+[Service]
+EnvironmentFile=/etc/sysconfig/locker
+ExecStart=/usr/local/bin/locker --server --socket $SOCKET $OPTIONS
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

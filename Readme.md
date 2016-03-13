@@ -30,6 +30,17 @@ There's a `Makefile` included, which will create a build for `linux-amd64`, so j
 
 If you're not on linux, just remove the `GOOS` and `GOARCH` parameters from the `Makefile`
 
+# Installation
+
+- Drop the built binary in a path like `/usr/local/bin`
+- Copy `locker.sysconfig` to `/etc/sysconfig/locker`
+- Install `locker.service` to `/usr/lib/systemd/system/locker.service`
+- Enable the service using `systemctl enable locker`
+- Start the server: `systemctl start locker`
+
+Whitelisted entries should be specified using the `OPTIONS` in the sysconfig file like
+`OPTIONS="--allow \"/mnt/storage/TimeMachine/lobeck’s MacBook Pro.sparsebundle/token\"`
+
 # Usage
 
 This consists of two parts, a server which is holding the lock and a client which requests locks and unlocks of files.

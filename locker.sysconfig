@@ -1,0 +1,4 @@
+# Configuration file for the locking service.
+SOCKET=/var/run/locker.sock
+
+OPTIONS=
