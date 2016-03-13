@@ -88,9 +88,7 @@ func main() {
 		}
 		message := LockMessage{Action: action, Filename: absPath}
 		c, err := net.Dial("unix", socketFilename)
-		if err != nil {
-			panic(err)
-		}
+		ExitOnError(err)
 		defer c.Close()
 
 
@@ -99,14 +97,19 @@ func main() {
 
 		decoder := json.NewDecoder(c)
 		err = decoder.Decode(&msg)
-		if err != nil {
-			panic(err)
-		}
+		ExitOnError(err)
 
 		fmt.Println(msg.Message)
 		if !msg.Success {
 			os.Exit(1)
 		}
+	}
+}
+
+func ExitOnError(err error) {
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
 	}
 }
 
