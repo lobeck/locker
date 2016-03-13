@@ -7,7 +7,9 @@ Note: The code here is _as is_, it's not nice and violating many golang programm
 # Background
 
 I wanted a system to consistently backup Mac .sparsebundle files on a linux box.
+
 In my case, this couldn't be done by filesystem snapshots, as LVM2 can't snapshot SSD cached volumes.
+
 As i knew, Mac OS X can prevent concurrent access, i took apart the OS X/netatalk behaviour and found, that a simple file lock is sufficient to prevent access to the sparsebundle.
 
 # Building
