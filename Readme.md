@@ -10,6 +10,23 @@ I wanted a system to consistently backup Mac .sparsebundle files on a linux box.
 In my case, this couldn't be done by filesystem snapshots, as LVM2 can't snapshot SSD cached volumes.
 As i knew, Mac OS X can prevent concurrent access, i took apart the OS X/netatalk behaviour and found, that a simple file lock is sufficient to prevent access to the sparsebundle.
 
+# Building
+
+Check it out on a system with a go installation.
+
+## the dirty way
+
+build: `go build`
+
+run: `go run *.go $parameters`
+
+## the nice way
+
+The directory structure should be: `$dir/src/beck/locker` and `$dir` will be used as `GOPATH`.
+There's a `Makefile` included, which will create a build for `linux-amd64`, so just do a `make build` and the `locker` binary will be created.
+
+If you're not on linux, just remove the `GOOS` and `GOARCH` parameters from the `Makefile`
+
 # Usage
 
 This consists of two parts, a server which is holding the lock and a client which requests locks and unlocks of files.
