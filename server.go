@@ -72,10 +72,7 @@ func startServer(socketFile string, pathWhitelist StringSliceFlag) {
 		var msg LockMessage
 
 		err = d.Decode(&msg)
-		if err != nil {
-			panic(err)
-		}
-		responseMessage := processMessage(msg)
+		responseMessage := processMessage(msg, err)
 
 		log.Printf("request %d - response: %+v", requestCounter, responseMessage)
 		encoder := json.NewEncoder(fd)
@@ -84,7 +81,12 @@ func startServer(socketFile string, pathWhitelist StringSliceFlag) {
 	}
 }
 
-func processMessage(message LockMessage) LockResponse {
+func processMessage(message LockMessage, err error) LockResponse {
+	if err != nil {
+			log.Println("Invalid message received: ", err)
+			return LockResponse{Success: false, Message: "invalid message"}
+	}
+
 	log.Printf("request %d - message: %+v\n", requestCounter, message)
 	if message.Action != "lock" && message.Action != "unlock" {
 		return LockResponse{Message: fmt.Sprintf("illegal action: %s", message.Action)}
