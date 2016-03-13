@@ -2,7 +2,7 @@
 
 This is a basic client/server system to lock files on the filesystem level.
 
-Note: The code here is _as is_, it's not nice and violating many golang programming patterns, so be careful, when you copy parts of it.
+Note: The code here is _as is_, it's not nice and violating many golang programming patterns, so be careful.
 
 # Background
 
