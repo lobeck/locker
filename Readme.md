@@ -23,6 +23,7 @@ run: `go run *.go $parameters`
 ## the nice way
 
 The directory structure should be: `$dir/src/beck/locker` and `$dir` will be used as `GOPATH`.
+
 There's a `Makefile` included, which will create a build for `linux-amd64`, so just do a `make build` and the `locker` binary will be created.
 
 If you're not on linux, just remove the `GOOS` and `GOARCH` parameters from the `Makefile`
